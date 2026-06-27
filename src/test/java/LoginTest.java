@@ -27,7 +27,7 @@ public class LoginTest {
         driver.get("https://the-internet.herokuapp.com/login");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 1)
     public void validLoginTest() {
 
         driver.findElement(By.id("username"))
@@ -44,7 +44,7 @@ public class LoginTest {
         Assert.assertTrue(message.contains("You logged into a secure area!"));
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void invalidLoginTest() {
 
         driver.findElement(By.id("username"))
@@ -61,7 +61,7 @@ public class LoginTest {
         Assert.assertTrue(message.contains("Your username is invalid!"));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void emptyFieldLoginTest() {
 
         driver.findElement(By.cssSelector("button[type='submit']"))
