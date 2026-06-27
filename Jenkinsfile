@@ -11,7 +11,7 @@ pipeline {
         stage('Clone Repository') {
 
             steps {
-                git branch: 'main',
+                git branch: 'master',
                 url: 'https://github.com/bharat141525/LoginPageJenkins.git'
             }
         }
@@ -30,15 +30,21 @@ pipeline {
             }
         }
     }
-
     post {
-
         always {
-
-            publishTestNGResults(
-                    testResultsPattern: 'test-output/testng-results.xml'
-            )
+            junit 'target/surefire-reports/*.xml'
         }
+    }
+
+//     post {
+//
+//         always {
+//
+//             publishTestNGResults(
+//                     testResultsPattern: 'test-output/testng-results.xml'
+//             )
+//         }
+
 
         success {
 
