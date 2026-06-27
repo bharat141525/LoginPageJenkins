@@ -8,51 +8,30 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-
-            steps {
-                git branch: 'master',
-                url: 'https://github.com/bharat141525/LoginPageJenkins.git'
-            }
-        }
-
         stage('Build') {
-
             steps {
                 sh 'mvn clean compile'
             }
         }
 
         stage('Run Tests') {
-
             steps {
                 sh 'mvn test'
             }
         }
     }
+
     post {
+
         always {
             junit 'target/surefire-reports/*.xml'
         }
-    }
-
-//     post {
-//
-//         always {
-//
-//             publishTestNGResults(
-//                     testResultsPattern: 'test-output/testng-results.xml'
-//             )
-//         }
-
 
         success {
-
             echo 'Pipeline executed successfully.'
         }
 
         failure {
-
             echo 'Pipeline execution failed.'
         }
     }
